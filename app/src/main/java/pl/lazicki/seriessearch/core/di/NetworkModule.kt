@@ -4,6 +4,7 @@ import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.dsl.module
+import pl.lazicki.seriessearch.core.api.SeriesApi
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
@@ -27,9 +28,11 @@ val networkModule = module {
 
     single {
         Retrofit.Builder()
-            .baseUrl("https://api.tvmaze.com/search/")
+            .baseUrl("https://api.tvmaze.com/")
             .addConverterFactory(GsonConverterFactory.create())
             .client(get<OkHttpClient>())
             .build()
     }
+
+    single { get<Retrofit>().create(SeriesApi::class.java) }
 }

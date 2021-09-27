@@ -1,4 +1,5 @@
 package pl.lazicki.seriessearch.core.di
 
-val koinInjector = networkModule
+val koinInjector = networkModule +
+        featuresModule
 
