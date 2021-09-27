@@ -51,6 +51,4 @@ ext {
             loggingInterceptor: "com.squareup.okhttp3:logging-interceptor:$okHttpVersion"
     ]
 
-    roomAnnotaionProcessor = "androidx.room:room-compiler:$roomVersion"
-
 }
