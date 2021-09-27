@@ -1,8 +1,7 @@
 package pl.lazicki.seriessearch.features.searchSeries.domain
 
 import pl.lazicki.seriessearch.core.base.UseCase
-import pl.lazicki.seriessearch.features.searchSeries.SerieDisplayable
-import pl.lazicki.seriessearch.features.searchSeries.domain.model.Serie
+import pl.lazicki.seriessearch.features.searchSeries.presentation.model.SerieDisplayable
 import pl.lazicki.seriessearch.features.searchSeries.domain.model.mapToPresentation
 
 class SearchUseCase(private val repository: SeriesRepository): UseCase<List<SerieDisplayable>, String>() {

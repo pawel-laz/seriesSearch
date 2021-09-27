@@ -1,6 +1,6 @@
 package pl.lazicki.seriessearch.features.searchSeries.domain.model
 
-import pl.lazicki.seriessearch.features.searchSeries.SerieDisplayable
+import pl.lazicki.seriessearch.features.searchSeries.presentation.model.SerieDisplayable
 
 data class Serie(
     val name: String,

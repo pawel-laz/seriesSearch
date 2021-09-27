@@ -16,5 +16,5 @@ fun SeriesDto.mapToDomain() =
     Serie(
         name,
         genres,
-        image.medium
+        image.medium?:image.original?:"placeholder"
     )

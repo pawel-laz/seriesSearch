@@ -7,7 +7,7 @@ import androidx.annotation.Keep
 @Keep
 data class ImageDto(
     @SerializedName("medium")
-    val medium: String,
+    val medium: String?,
     @SerializedName("original")
-    val original: String
+    val original: String?
 )

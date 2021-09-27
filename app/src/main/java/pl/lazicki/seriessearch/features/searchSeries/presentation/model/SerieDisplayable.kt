@@ -1,4 +1,4 @@
-package pl.lazicki.seriessearch.features.searchSeries
+package pl.lazicki.seriessearch.features.searchSeries.presentation.model
 
 data class SerieDisplayable(
     val name: String,

@@ -9,9 +9,9 @@ import kotlinx.android.synthetic.main.activity_main.view.*
 import org.koin.android.ext.android.inject
 import pl.lazicki.seriessearch.core.extensions.setVisible
 import pl.lazicki.seriessearch.databinding.ActivityMainBinding
-import pl.lazicki.seriessearch.features.searchSeries.SearchUiState
-import pl.lazicki.seriessearch.features.searchSeries.SerieDisplayable
-import pl.lazicki.seriessearch.features.searchSeries.SeriesViewModel
+import pl.lazicki.seriessearch.features.searchSeries.presentation.SearchUiState
+import pl.lazicki.seriessearch.features.searchSeries.presentation.model.SerieDisplayable
+import pl.lazicki.seriessearch.features.searchSeries.presentation.SeriesViewModel
 
 class MainActivity : AppCompatActivity() {
 
@@ -51,15 +51,23 @@ class MainActivity : AppCompatActivity() {
 
     private fun showLoading() {
         binding.root.progressBarSearch.setVisible(true)
+        binding.root.textViewError.setVisible(false)
+        binding.root.textViewNoResult.setVisible(false)
     }
 
     private fun showSuccess(series: List<SerieDisplayable>?) {
         binding.root.progressBarSearch.setVisible(false)
+        binding.root.textViewError.setVisible(false)
+        binding.root.textViewNoResult.setVisible(series?.size == 0)
+
         Log.d("APP","showSuccess, series: $series")
     }
 
     private fun showError(message: String?) {
         binding.root.progressBarSearch.setVisible(false)
-        Log.d("APP","showError, message: $message")
+        binding.root.textViewError.apply {
+            text = message
+            setVisible(true)
+        }
     }
 }
