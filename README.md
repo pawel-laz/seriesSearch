@@ -25,6 +25,8 @@ val searchUiState: StateFlow<SearchUiState> = _searchUiState
 ```
 
 
+* If application gets more features move things related to the search series from MainActivity to a fragment (inside series feature package [pl.lazicki.seriessearch.features.searchSeries.presentation])
+
 * If the application grows, I recommend switching to multi-modularity
 
 Example structure of modules (depending on the demand):
@@ -35,11 +37,18 @@ features
     search (insiede domain module (inside data module))
     nextFeature
     anotherFeature
+    ...
 utils
     android
     architecture
     extension
+    ...
 design
     views
     (style.xml, colors.xml and shared drawables)
+...
 ```
+
+
+
+####
