@@ -3,6 +3,7 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply from: '../dependencies.gradle'
+apply from: '../testDependencies.gradle'
 
 android {
     compileSdk 30
@@ -33,6 +34,11 @@ android {
     buildFeatures {
         viewBinding = true
     }
+    testOptions {
+        unitTests.all {
+            useJUnitPlatform()
+        }
+    }
 }
 
 dependencies {
@@ -46,4 +52,7 @@ dependencies {
     implementation lifecycleDependencies.values()
     implementation coroutinesDependencies.values()
     implementation networkDependencies.values()
+
+    testImplementation testDependencies.values()
+    testRuntimeOnly runtimeTestDependencies.values()
 }

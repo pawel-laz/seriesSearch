@@ -6,7 +6,9 @@ data class Serie(
     val name: String,
     val genres: List<String>,
     val image: String?
-)
+) {
+    companion object
+}
 
 fun Serie.mapToPresentation() = SerieDisplayable(
     name,

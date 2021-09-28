@@ -4,4 +4,6 @@ data class SerieDisplayable(
     val name: String,
     val genres: List<String>,
     val image: String?
-)
+) {
+    companion object
+}
