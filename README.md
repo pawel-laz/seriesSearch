@@ -2,6 +2,8 @@
 
 Series Search is an Android Application for searching basic information of series.
 
+<img src="seriesSearch_cut.gif" width="400" height="700" />
+
 ## Libraries used
 
 * **Koin** for dependency injection, 
