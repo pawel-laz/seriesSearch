@@ -5,7 +5,7 @@ import pl.lazicki.seriessearch.features.searchSeries.presentation.model.SerieDis
 data class Serie(
     val name: String,
     val genres: List<String>,
-    val image: String
+    val image: String?
 )
 
 fun Serie.mapToPresentation() = SerieDisplayable(

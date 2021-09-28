@@ -25,6 +25,6 @@ class SeriesViewModel(
 
 sealed class SearchUiState {
     object Loading : SearchUiState()
-    data class Success(val series: List<SerieDisplayable>?) : SearchUiState()
+    data class Success(val series: List<SerieDisplayable>) : SearchUiState()
     data class Error(val message: String?) : SearchUiState()
 }

@@ -9,5 +9,4 @@ class SearchUseCase(private val repository: SeriesRepository): UseCase<List<Seri
     override suspend fun action(params: String): List<SerieDisplayable> =
         repository.searchSeries(params)
             .map { it.mapToPresentation() }
-
 }

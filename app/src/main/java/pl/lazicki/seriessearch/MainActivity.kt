@@ -10,6 +10,7 @@ import org.koin.android.ext.android.inject
 import pl.lazicki.seriessearch.core.extensions.setVisible
 import pl.lazicki.seriessearch.databinding.ActivityMainBinding
 import pl.lazicki.seriessearch.features.searchSeries.presentation.SearchUiState
+import pl.lazicki.seriessearch.features.searchSeries.presentation.SeriesAdapter
 import pl.lazicki.seriessearch.features.searchSeries.presentation.model.SerieDisplayable
 import pl.lazicki.seriessearch.features.searchSeries.presentation.SeriesViewModel
 
@@ -17,13 +18,13 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private val viewModel: SeriesViewModel by inject()
+    private val seriesAdapter: SeriesAdapter by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        initRecycler()
         listenSearchEvent()
         observeSearchResult()
     }
@@ -35,7 +36,9 @@ class MainActivity : AppCompatActivity() {
 
         binding.root.editTextSearch.doOnTextChanged { text, _, count, _ ->
             if (count >= 3 && text != null)
-                viewModel.search(text.toString().trim())
+                viewModel.search(text.toString())
+            else
+                showSuccess(emptyList())
         }
     }
 
@@ -50,24 +53,35 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showLoading() {
-        binding.root.progressBarSearch.setVisible(true)
-        binding.root.textViewError.setVisible(false)
-        binding.root.textViewNoResult.setVisible(false)
+        with(binding.root){
+            progressBarSearch.setVisible(true)
+            textViewError.setVisible(false)
+            textViewNoResult.setVisible(false)
+        }
     }
 
-    private fun showSuccess(series: List<SerieDisplayable>?) {
-        binding.root.progressBarSearch.setVisible(false)
-        binding.root.textViewError.setVisible(false)
-        binding.root.textViewNoResult.setVisible(series?.size == 0)
-
-        Log.d("APP","showSuccess, series: $series")
+    private fun showSuccess(series: List<SerieDisplayable>) {
+        with(binding.root) {
+            progressBarSearch.setVisible(false)
+            textViewError.setVisible(false)
+            textViewNoResult.setVisible(series.isEmpty())
+        }
+        seriesAdapter.setItems(series)
     }
 
     private fun showError(message: String?) {
-        binding.root.progressBarSearch.setVisible(false)
-        binding.root.textViewError.apply {
-            text = message
-            setVisible(true)
+        with(binding.root) {
+            progressBarSearch.setVisible(false)
+            textViewError.apply {
+                text = message
+                setVisible(true)
+            }
+        }
+    }
+
+    private fun initRecycler() {
+        with(binding.root.recyclerViewSeries) {
+            adapter = seriesAdapter
         }
     }
 }

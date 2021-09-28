@@ -9,12 +9,12 @@ import pl.lazicki.seriessearch.features.searchSeries.domain.model.Serie
 data class SeriesDto(
     @SerializedName("name") val name: String,
     @SerializedName("genres") val genres: List<String>,
-    @SerializedName("image") val image: ImageDto
+    @SerializedName("image") val image: ImageDto?
 )
 
 fun SeriesDto.mapToDomain() =
     Serie(
         name,
         genres,
-        image.medium?:image.original?:"placeholder"
+        image?.medium
     )
